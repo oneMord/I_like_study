@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="I_like_study" />
+        <module name="maven_controller" />
+        <module name="maven_service" />
+        <module name="maven_dao" />
       </profile>
     </annotationProcessing>
   </component>

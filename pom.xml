@@ -6,7 +6,13 @@
 
     <groupId>com.li</groupId>
     <artifactId>I_like_study</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>maven_dao</module>
+        <module>maven_service</module>
+        <module>maven_controller</module>
+    </modules>
 
 
 </project>
