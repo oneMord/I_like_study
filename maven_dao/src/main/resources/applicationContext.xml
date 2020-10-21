@@ -43,6 +43,6 @@
     </bean>
 
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.li.dao"></property>
+        <property name="basePackage" value="com.li.mapper"></property>
     </bean>
 </beans>

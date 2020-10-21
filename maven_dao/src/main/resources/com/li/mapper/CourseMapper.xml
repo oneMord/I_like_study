@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.li.mapper.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.li.pojo.Course">
+    <constructor>
+      <arg column="c_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="t_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.li.pojo.Course">
+    insert into course (c_id, c_name, t_id
+      )
+    values (#{cId,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}, #{tId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.li.pojo.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cName != null">
+        c_name,
+      </if>
+      <if test="tId != null">
+        t_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.li.pojo.Course">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="subject_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.li.pojo.Course">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="subject_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_desc" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, course_title, subject_id
+  </sql>
+  <sql id="Blob_Column_List">
+    course_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.li.pojo.Course">
+    insert into course (id, course_title, subject_id, 
+      course_desc)
+    values (#{id,jdbcType=INTEGER}, #{courseTitle,jdbcType=VARCHAR}, #{subjectId,jdbcType=INTEGER}, 
+      #{courseDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.li.pojo.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="courseTitle != null">
+        course_title,
+      </if>
+      <if test="subjectId != null">
+        subject_id,
+      </if>
+      <if test="courseDesc != null">
+        course_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseTitle != null">
+        #{courseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null">
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="courseDesc != null">
+        #{courseDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.li.pojo.Course">
+    update course
+    <set>
+      <if test="courseTitle != null">
+        course_title = #{courseTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null">
+        subject_id = #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="courseDesc != null">
+        course_desc = #{courseDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.li.pojo.Course">
+    update course
+    set course_title = #{courseTitle,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=INTEGER},
+      course_desc = #{courseDesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.li.pojo.Course">
+    update course
+    set course_title = #{courseTitle,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
